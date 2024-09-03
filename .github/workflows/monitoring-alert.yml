@@ -1,0 +1,13 @@
+name: Monitoring Alert
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+
+jobs:
+  monitoring:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check CPU usage
+      run: |
+        gcloud monitoring metrics list --filter='metric.type="compute.googleapis.com/instance/diskio"'
